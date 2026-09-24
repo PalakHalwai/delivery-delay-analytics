@@ -1,45 +1,29 @@
-# Delivery Delay & Supply Chain Operations Analytics
+# 🚚 Delivery Delay & Supply Chain Operations Analytics Platform
 
 ## 📌 Project Overview
-This project models and analyzes supply chain delivery delays for a simulated e-commerce enterprise. Using a relational MySQL database and Python, it identifies operational bottlenecks across carriers, warehouses, and product categories to quantify revenue at risk due to late shipments.
+An end-to-end operational analytics and predictive modeling platform designed to evaluate and mitigate supply chain delivery delays. Built on a local **MySQL** database, **Python**, **scikit-learn**, and **Streamlit**, this project identifies fulfillment bottlenecks, quantifies revenue at risk, and provides real-time ML-powered delay predictions for incoming shipments.
 
 ---
 
-## 🏗️ Relational Schema Design
-The database uses a 4-table relational schema designed in MySQL:
-- **`orders`**: Stores transaction timestamps, promised delivery dates, customer IDs, and order values.
-- **`shipments`**: Tracks dispatch times, assigned carriers, regional warehouses, and actual delivery dates.
-- **`warehouses`**: Tracks regional fulfillment facilities and daily processing capacities.
-- **`carriers`**: Contains delivery logistics partners and associated service tiers.
+## 🏗️ Architecture & Relational Schema
+- **Database**: MySQL relational schema (`orders`, `shipments`, `warehouses`, `carriers`).
+- **ETL Ingestion**: Automated data generator script built with `SQLAlchemy` and `Pandas` to model realistic operational bottleneck rules.
+- **SQL Analytics**: Multi-join queries analyzing delay rates, carrier on-time delivery benchmarks, and category-level financial risk.
+- **Machine Learning**: Random Forest Classifier pipeline (`scikit-learn`) predicting shipment delays with **70%+ recall** on high-risk packages.
+- **Interactive Web App**: Interactive dashboard (`Streamlit`) for live SQL KPI monitoring and real-time delivery risk simulation.
 
 ---
 
-## 📊 Key Operational Insights & Findings
-1. **Overall Delay Rate**: ~25% of all orders experienced fulfillment or transit delays beyond the promised delivery date.
-2. **Carrier Performance**: Identified significant variance in on-time delivery percentages between ground and express carriers.
-3. **Revenue Impact**: High-value product categories represented the highest concentration of revenue at risk from delivery lags.
+## 🤖 Machine Learning Model Performance
+- **Algorithm**: Random Forest Classifier with `ColumnTransformer` feature preprocessing.
+- **Key Features**: Product Category, Order Value, Order Day of Week, Carrier Service Level, Warehouse Region, and Daily Processing Capacity.
+- **Metrics**:
+  - **ROC-AUC Score**: ~0.74
+  - **Delayed Class Recall**: ~0.71
 
 ---
 
-## 🛠️ Visualizations
-*(Generated via Pandas, Seaborn & Matplotlib)*
-
-### Carrier On-Time Delivery Rates
-![Carrier Performance](carrier_performance.png)
-
-### Delayed Revenue Impact by Category
-![Revenue at Risk](revenue_at_risk.png)
-
----
-
-## 🚀 How to Run Locally
-
-### Prerequisites
-- Python 3.x
-- MySQL Server & MySQL Workbench
-
-### Setup
-1. **Clone the repository**:
-   ```bash
-   git clone [https://github.com/YOUR_USERNAME/delivery-delay-analytics.git](https://github.com/YOUR_USERNAME/delivery-delay-analytics.git)
-   cd delivery-delay-analytics
+## 🖥️ Live Streamlit Dashboard
+Launch the interactive web application:
+```bash
+streamlit run app.py
